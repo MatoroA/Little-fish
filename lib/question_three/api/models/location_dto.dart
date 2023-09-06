@@ -1,16 +1,17 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:littlefish/question_three/entities/location.dart';
 
 part 'location_dto.g.dart';
 
 @JsonSerializable()
-class LocationDto {
-  String name;
-  String url;
-
+class LocationDto extends Location {
   LocationDto({
-    required this.name,
-    required this.url,
-  });
+    required String name,
+    required String url,
+  }) : super(
+          name: name,
+          url: url,
+        );
 
   factory LocationDto.fromJson(Map<String, dynamic> json) =>
       _$LocationDtoFromJson(json);
