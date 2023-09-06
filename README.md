@@ -4,13 +4,11 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Each question has been seperated into a feature, to run each feature edit build configuration.
 
-A few resources to get you started if this is your first Flutter project:
+Example:
+To run question 1
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Dart entrypoint = .../main_question_one.dart
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Build flavor = one
