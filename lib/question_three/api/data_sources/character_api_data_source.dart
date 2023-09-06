@@ -1,5 +1,5 @@
-import 'package:littlefish/question_three/entities/character.dart';
+import 'package:littlefish/question_three/entities/character_response.dart';
 
 abstract class CharacterApiDataSource {
-  Future<List<Character>> getCharacters(String? nextPageKey);
+  Future<CharacterResponse?> getCharacters(String? nextPageKey);
 }

@@ -1,24 +1,37 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:littlefish/question_three/api/models/location_dto.dart';
+import 'package:littlefish/question_three/api/dtos/location_dto.dart';
 import 'package:littlefish/question_three/entities/character.dart';
 
 part 'character_dto.g.dart';
 
 @JsonSerializable()
 class CharacterDto extends Character {
+  final int id;
+  final String name;
+  final String status;
+  final String species;
+  final String type;
+  final String gender;
+  final LocationDto origin;
+  final LocationDto location;
+  final String image;
+  final List<String> episode;
+  final String url;
+  final DateTime created;
+
   CharacterDto({
-    required int id,
-    required String name,
-    required String status,
-    required String species,
-    required String type,
-    required String gender,
-    required LocationDto origin,
-    required LocationDto location,
-    required String image,
-    required List<String> episode,
-    required String url,
-    required DateTime created,
+    required this.id,
+    required this.name,
+    required this.status,
+    required this.species,
+    required this.type,
+    required this.gender,
+    required this.origin,
+    required this.location,
+    required this.image,
+    required this.episode,
+    required this.url,
+    required this.created,
   }) : super(
           id: id,
           name: name,
