@@ -19,7 +19,7 @@ class ReduxCounterView extends StatelessWidget {
     return StoreProvider(
       store: store,
       child: Scaffold(
-        appBar: const QuestionAppBar(pageTitle: 'Question One'),
+        appBar: const QuestionAppBar(pageTitle: 'Question Two'),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
