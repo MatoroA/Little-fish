@@ -40,6 +40,10 @@ dependencies:
   flutter_redux: ^0.10.0
   json_annotation: ^4.8.1
   build_runner_core: ^7.2.10
+  get_it: ^7.6.4
+  http: ^1.1.0
+  path: ^1.8.3
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +67,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    -  configuration/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
