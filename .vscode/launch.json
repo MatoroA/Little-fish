@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Question one",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_question_one.dart",
+      "args": [
+        "--flavor",
+        "one",
+        "--target",
+        "lib/main_question_one.dart"
+      ]
+    },
+    {
+      "name": "Question two",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_question_two.dart",
+      "args": [
+        "--flavor",
+        "two",
+        "--target",
+        "lib/main_question_two.dart"
+      ]
+    },
+    {
+      "name": "Question three",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_question_three.dart",
+      "args": [
+        "--flavor",
+        "three",
+        "--target",
+        "lib/main_question_three.dart"
+      ]
+    },
+    {
+      "name": "Question four",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_question_four.dart",
+      "args": [
+        "--flavor",
+        "four",
+        "--target",
+        "lib/main_question_four.dart"
+      ]
+    }
+  ]
+}
