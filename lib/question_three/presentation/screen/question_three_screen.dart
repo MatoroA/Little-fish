@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:littlefish/core/question_app_bar.dart';
-import 'package:littlefish/question_three/entities/character.dart';
+import 'package:littlefish/question_three/domain/entities/character.dart';
 import 'package:littlefish/question_three/presentation/component/character_widget.dart';
-import 'package:littlefish/question_three/presentation/screen/characters_controller.dart';
+import 'package:littlefish/question_three/presentation/screen/character_full_screen_modal.dart';
+import 'package:littlefish/question_three/presentation/screen/view_model/characters_cubit.dart';
+import 'package:littlefish/question_three/presentation/screen/view_model/characters_state.dart';
 
 class QuestionThreeScreen extends StatefulWidget {
   const QuestionThreeScreen({super.key});
@@ -12,22 +15,41 @@ class QuestionThreeScreen extends StatefulWidget {
 }
 
 class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
-  final _charactersController = CharactersController();
+  late CharactersCubit charactersCubit;
+
+  @override
+  void initState() {
+    charactersCubit = context.read<CharactersCubit>()..getCharacters(1);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const QuestionAppBar(pageTitle: 'Question Three'),
-      body: FutureBuilder(
-        future: _charactersController.getCharacters(null),
-        builder: (_, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+      body: BlocConsumer<CharactersCubit, CharactersState>(
+        // listenWhen:,
+        listener: (_, state) {
+          if (state.characters.length < 20) {
+          } else {}
+        },
+        builder: (_, state) {
+          if (state.characters.isEmpty &&
+              state.status == CharactersStatus.loading) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final data = snapshot.data ?? [];
+          if (state.status == CharactersStatus.failure) {
+            return Center(child: Text('Failure'));
+          }
 
-          return CharacterListView(characters: data);
+          return CharacterListView(
+            characters: state.characters,
+            isLastPage: state.isLastPage,
+            fetchMore: () {
+              charactersCubit.getCharacters(state.currentPageKey + 1);
+            },
+          );
         },
       ),
     );
@@ -36,19 +58,42 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
 
 class CharacterListView extends StatelessWidget {
   final List<Character> characters;
+  final bool isLastPage;
+  final VoidCallback fetchMore;
 
   const CharacterListView({
     super.key,
     required this.characters,
+    required this.isLastPage,
+    required this.fetchMore,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: characters.length,
-      itemBuilder: (_, int index) {
-        return CharacterWidget(character: characters[index]);
+    return NotificationListener<ScrollNotification>(
+      onNotification: (scrollNotification) {
+        if (scrollNotification.metrics.pixels + 350 >
+            scrollNotification.metrics.maxScrollExtent) {
+          if (!isLastPage) {
+            fetchMore();
+          }
+        }
+        return false;
       },
+      child: ListView.builder(
+        itemCount: characters.length,
+        itemBuilder: (_, int index) {
+          return CharacterWidget(
+            character: characters[index],
+            onClick: () async {
+              await showCharacterDialog(
+                context: context,
+                character: characters[index],
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

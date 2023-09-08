@@ -1,4 +1,4 @@
-import 'package:littlefish/question_three/entities/location.dart';
+import 'package:littlefish/question_three/domain/entities/location.dart';
 
 class Character {
   final int id;
