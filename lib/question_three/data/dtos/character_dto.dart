@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:littlefish/question_three/api/dtos/location_dto.dart';
-import 'package:littlefish/question_three/entities/character.dart';
+import 'package:littlefish/question_three/data/dtos/location_dto.dart';
+import 'package:littlefish/question_three/domain/entities/character.dart';
 
 part 'character_dto.g.dart';
 

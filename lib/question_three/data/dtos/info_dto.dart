@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:littlefish/question_three/entities/info.dart';
+import 'package:littlefish/question_three/domain/entities/info.dart';
 
 part 'info_dto.g.dart';
 

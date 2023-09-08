@@ -1,5 +1,5 @@
-import 'package:littlefish/question_three/entities/character.dart';
-import 'package:littlefish/question_three/entities/info.dart';
+import 'package:littlefish/question_three/domain/entities/character.dart';
+import 'package:littlefish/question_three/domain/entities/info.dart';
 
 class CharacterResponse {
   final Info info;
