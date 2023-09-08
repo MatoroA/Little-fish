@@ -34,7 +34,7 @@ class _QuestionThreeScreenState extends State<QuestionThreeScreen> {
           } else {}
         },
         builder: (_, state) {
-          if (state.status == CharactersStatus.initial ||
+          if (state.characters.isEmpty &&
               state.status == CharactersStatus.loading) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -72,7 +72,7 @@ class CharacterListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollNotification) {
-        if (scrollNotification.metrics.pixels + 250 >
+        if (scrollNotification.metrics.pixels + 350 >
             scrollNotification.metrics.maxScrollExtent) {
           if (!isLastPage) {
             fetchMore();
@@ -86,7 +86,10 @@ class CharacterListView extends StatelessWidget {
           return CharacterWidget(
             character: characters[index],
             onClick: () async {
-              await showCharacterDialog(context);
+              await showCharacterDialog(
+                context: context,
+                character: characters[index],
+              );
             },
           );
         },
