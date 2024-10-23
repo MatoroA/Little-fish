@@ -1,4 +1,4 @@
-# littlefish
+# littlefish Interview Assessment Application
 
 A new Flutter project.
 
